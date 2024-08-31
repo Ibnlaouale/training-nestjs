@@ -27,4 +27,18 @@ export class TodosService {
     getAll(): Todo[] {
         return this.todos;
     }
+
+    getOne(id: string){
+
+        // console.log('finded ===>', this.todos.find( todo => todo.id === Number(id)));
+        return this.todos.find( todo => todo.id === Number(id))
+         
+    }
+
+    createNewTask(newTask){
+         this.todos = [...this.todos, newTask];
+    }
+
+
+    
 }
