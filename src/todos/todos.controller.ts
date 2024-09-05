@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { TodosService } from './todos.service';
 import { Todo } from './interfaces/todo.interface';
 import { createTodoDto } from './dto/createTodoDto.dto';
@@ -15,7 +15,7 @@ export class TodosController {
     }
 
     @Get(':id')
-    findOne(@Param('id') id: string){
+    findOne(@Param('id') id: number){
 
         //console.log('type de ID ====>', typeof(id));
         // console.log('id since controller ====>', Number(id));
@@ -30,4 +30,7 @@ export class TodosController {
         // console.log("newTodo ===>", newTodo);
         this.todosServices.createNewTask(newTodo)
     }
+
+  
+
 }
