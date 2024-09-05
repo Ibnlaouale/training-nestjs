@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { TodosService } from './todos.service';
 import { Todo } from './interfaces/todo.interface';
+import { createTodoDto } from './dto/createTodoDto.dto';
 
 // localhost:3000/dotos
 @Controller('todos')
@@ -15,15 +16,18 @@ export class TodosController {
 
     @Get(':id')
     findOne(@Param('id') id: string){
-        // console.log('id ====>', id);
+
+        //console.log('type de ID ====>', typeof(id));
+        // console.log('id since controller ====>', Number(id));
+        // console.log('value finded ======', this.todosServices.getOne(Number(id)));
         
-        return this.todosServices.getOne(id)
+        return this.todosServices.getOne(Number(id))
+
     }
 
     @Post()
-    createTodo(@Body() newTodo){
+    createTodo(@Body() newTodo: createTodoDto){
         // console.log("newTodo ===>", newTodo);
-        
         this.todosServices.createNewTask(newTodo)
     }
 }
