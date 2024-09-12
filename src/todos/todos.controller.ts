@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { TodosService } from './todos.service';
 import { Todo } from './interfaces/todo.interface';
 import { createTodoDto } from './dto/createTodoDto.dto';
+import { identity } from 'rxjs';
 
 // localhost:3000/dotos
 @Controller('todos')
@@ -38,4 +39,9 @@ export class TodosController {
     }
   
 
+    @Delete(':id')
+
+    deletetodo(@Param('id') id: number){
+        return this.todosServices.deleteTodo(id);
+    }
 }

@@ -59,10 +59,21 @@ export class TodosService {
             todoToUpdate.title = todo.description;
         }
 
-        const todosUpdate = this.todos.map(td => td.id !== id ? td : todoToUpdate);
+        const todosUpdate = this.todos.map(td => td.id !== Number(id) ? td : todoToUpdate);
         this.todos = [...todosUpdate];
         return {updatedTodo: 1, todo: todoToUpdate}
     }
 
+    deleteTodo(id: number){
+        const nbTodoBeforeDelete = this.todos.length;
+        this.todos = [...this.todos.filter(td => td.id !== Number(id))];
+
+        if ( this.todos.length < nbTodoBeforeDelete) {
+            return {deleteTodo: 1, nbTodos: this.todos.length}
+        } else {
+
+             return {deleteTodo: 0, nbTodos: this.todos.length}
+        }
+    }
     
 }
