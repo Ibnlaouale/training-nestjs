@@ -31,6 +31,11 @@ export class TodosController {
         this.todosServices.createNewTask(newTodo)
     }
 
+    @Patch(':id')
+    
+    upDateTido(@Param('id') id: number, @Body() todo: createTodoDto){
+        return this.todosServices.edittask(id, todo as Todo);
+    }
   
 
 }
